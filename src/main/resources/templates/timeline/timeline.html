@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html 
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/defaultLayout}">
+<section layout:fragment="content" class="contents d-flex justify-content-center">
+
+	<div class="container">
+		<!-- 글 작성 -->
+		<div class="post-box border border-right rounded ">
+			<textarea placeholder="내용을 입력해주세요" class="w-100 h-75 border-0"></textarea>
+			<div class="d-flex align-items-end justify-content-between">
+				<img class="post-img" src="https://previews.123rf.com/images/martialred/martialred1507/martialred150700888/42620709-%EC%95%B1-%EB%B0%8F-%EC%9B%B9-%EC%82%AC%EC%9D%B4%ED%8A%B8%EB%A5%BC%EC%9C%84%ED%95%9C-%ED%92%8D%EA%B2%BD-%EC%82%AC%EC%A7%84-%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%94%8C%EB%9E%AB-%EC%95%84%EC%9D%B4%EC%BD%98.jpg">
+				<input type="submit" value="게시" class="btn btn-info">
+			</div>
+		</div>	
+		
+		<!-- 글 목록 -->
+		<div class="timeline-box border border-right rounded ">
+			<!-- timeline 상단 부분 -->
+			<div class="timeline-header d-flex justify-content-between">
+				<div class="h-100 text-weight-bold">marobiana</div>
+				<img src="/img/more-icon.png" class="h-100">
+			</div>
+		</div>
+	</div>
+</section>
+
+<th:block layout:fragment="script">
+    <script>
+
+    </script>
+</th:block>

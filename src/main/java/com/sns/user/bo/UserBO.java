@@ -12,12 +12,14 @@ public class UserBO {
 	@Autowired
 	private UserRepository userRepository;
 
+	// 중복확인
 	//input : loginId
 	//output: UserEntity
 	public UserEntity getUserEntityByLoginId(String loginId) {
 		return userRepository.findByLoginId(loginId);
 	}
 	
+	// 회원가입
 	// input: 파라미터 4개 
 	// output: UserEntity
 	public UserEntity addUser(String loginId, String password, String name, String email) {
@@ -28,5 +30,12 @@ public class UserBO {
 				.name(name)
 				.email(email)
 				.build());
+	}
+	
+	// 로그인
+	// input: loginId, password
+	// output: UserEntity, null
+	public UserEntity getUserEntityByLoginIdPassword(String loginId, String password) {
+		return userRepository.findByLoginIdAndPassword(loginId, password);
 	}
 }

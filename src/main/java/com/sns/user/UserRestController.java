@@ -13,6 +13,8 @@ import com.sns.common.EncryptUtils;
 import com.sns.user.bo.UserBO;
 import com.sns.user.entity.UserEntity;
 
+import jakarta.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/user")
 public class UserRestController {
@@ -44,7 +46,14 @@ public class UserRestController {
 	}
 	
 	
-	// 회원가입 
+	/**
+	 * 회원가입 API
+	 * @param loginId
+	 * @param password
+	 * @param name
+	 * @param email
+	 * @return
+	 */
 	@PostMapping("/sign-up")
 	public Map<String, Object> signUp(@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
@@ -68,6 +77,34 @@ public class UserRestController {
 			result.put("code", 500);
 			result.put("error_message","회원가입에 실패했습니다.");
 		}
+		
+		return result;
+	}
+	
+	
+	// 로그인 API
+	@RequestMapping("/sign-in")
+	public Map<String, Object> signIn(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password,
+			HttpSession session) {
+		
+		// 비밀번호 hasing
+		String hashedPassword = EncryptUtils.md5(password);
+		
+		// db select
+		UserEntity user = userBO.getUserEntityByLoginIdPassword(loginId,hashedPassword);
+		
+		// session
+		session.setAttribute("userId", user.getId());
+		session.setAttribute("userLoginId", user.getLoginId());
+		session.setAttribute("userName", user.getName());
+		
+		// 응답값 
+		Map<String, Object> result = new HashMap<>();
+	
+		result.put("code", 200);
+		result.put("result", "성공");
 		
 		return result;
 	}
