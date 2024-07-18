@@ -96,7 +96,7 @@ public class UserRestController {
 		UserEntity user = userBO.getUserEntityByLoginIdPassword(loginId,hashedPassword);
 		
 		// session
-		session.setAttribute("userId", user.getId());
+		session.setAttribute("userId", user.getId());     
 		session.setAttribute("userLoginId", user.getLoginId());
 		session.setAttribute("userName", user.getName());
 		
