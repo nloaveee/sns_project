@@ -5,8 +5,7 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import groovy.transform.builder.Builder;
-import groovyjarjarantlr4.v4.parse.ANTLRParser.labeledAlt_return;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +20,7 @@ import lombok.ToString;
 
 @Table(name="post")
 @Getter
-@Builder
+@lombok.Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString

@@ -125,20 +125,30 @@
     			$("#fileName").text(fileName);
     		});    		
     		
+    		
     		// 글쓰기 
     		$("#writeBtn").on('click',function(){
-    			let content = $("#writeTextArea").val();
-    			let fileName = $("#file").val();
+    			let content = $("#writeTextArea").val(); // 내용 비필수 
+    			let file = $("#file").val(); // 이미지 필수 
     			
     			// validation
-    			if (!content) {
-    				alert("내용을 입력하세요");
+    			if (file == '') {
+    				alert("파일을 업로드 해주세요");
     				return;
     			}
     			
+				// 파일이 업로드 된 경우 확장자 체크
+				let ext = file.split('.').pop().toLowerCase(); // 파일 경로를 .으로 나누고 확장자가 있는 마지막 문자열을 가져온 후 모두 소문자로 변경
+				if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+					alert("gif, png, jpg, jpeg 파일만 업로드 할 수 있습니다.");
+					$('#file').val(''); // 파일을 비운다.
+					return;
+				} 
+    			
+    			// 폼태그를 자바스크립트에서 생성 
     			let formData = new FormData();
-    			forData.append("content",content);
-    			forData.append("file",$("#file")[0].files[0]);
+    			formData.append("content",content);
+    			formData.append("file",$("#file")[0].files[0]);
     			
     			$.ajax({
     				// request
@@ -153,9 +163,9 @@
     				// response
     				, success:function(data) {
     					if ( data.code ==200 ) {
-    						alert("글이 저장되었습니다.");
-    						// 타임라인 화면 이동 
-    						location.href = "/timeline/timeline-view";
+    						location.reload();
+    					} else if (data.code = 403) { // 비로그인 일 때 
+    						location.href = "/user/sign-in-view";
     					} else {
     						alert(data.error_message);
     					}
