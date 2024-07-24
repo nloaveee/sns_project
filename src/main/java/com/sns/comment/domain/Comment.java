@@ -13,7 +13,7 @@ public class Comment {
 	private int id;
 	private int userId;
 	private int postId;
-	private String conent;
+	private String content;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 }
