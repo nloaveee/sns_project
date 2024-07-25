@@ -1,4 +1,4 @@
-package com.sns.like.Mapper;
+package com.sns.like.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -6,9 +6,16 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface LikeMapper {
 
+//	public int selectLikeCountByPostIdUserId(
+//			@Param("postId") int postId,
+//			@Param("userId") int userId);
+	
+//	public int selectLikeCountByPostId(int postId);
+	
+	// 카운트 쿼리를 하나로 합친다.
 	public int selectLikeCountByPostIdOrUserId(
 			@Param("postId") int postId,
-			@Param("userId") int userId);
+			@Param("userId") Integer userId);
 	
 	public int insertLike(
 			@Param("postId") int postId,

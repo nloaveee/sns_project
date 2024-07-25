@@ -9,11 +9,10 @@ import com.sns.comment.domain.Comment;
 
 @Mapper
 public interface CommentMapper {
-	
-	
-	public void insertComment(
-			@Param("userId") int userId, 
+
+	public int insertComment(
 			@Param("postId") int postId, 
+			@Param("userId") int userId, 
 			@Param("content") String content);
 	
 	public List<Comment> selectCommentList();
