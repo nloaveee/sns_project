@@ -52,4 +52,11 @@ public class LikeBO {
 		
 	}
 	
+	// 좋아요 삭제 
+	// input: postId
+	// output: x
+	public void deleteLikeByPostId(int postId) {
+		likeMapper.deleteLikeByPostId(postId);
+	}
+	
 }
